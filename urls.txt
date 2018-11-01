@@ -1,0 +1,6 @@
+http://registration-pal-sjs.apps.pikes.pal.pivotal.io/users/{USER_ID}
+http://registration-pal-sjs.apps.pikes.pal.pivotal.io/accounts?ownerId={USER_ID}
+http://registration-pal-sjs.apps.pikes.pal.pivotal.io/projects?accountId={ACCOUNT_ID}
+http://allocations-pal-sjs.apps.pikes.pal.pivotal.io/allocations?projectId={PROJECT_ID}
+http://backlog-pal-sjs.apps.pikes.pal.pivotal.io/stories?projectId={PROJECT_ID}
+http://timesheets-pal-sjs.apps.pikes.pal.pivotal.io/time-entries?userId={USER_ID}
