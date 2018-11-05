@@ -1,6 +1,7 @@
 package io.pivotal.pal.tracker.allocations;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.client.RestOperations;
 
 import java.util.Map;
@@ -19,10 +20,13 @@ public class ProjectClient {
 
     @HystrixCommand(fallbackMethod = "getProjectFromCache")
     public ProjectInfo getProject(long projectId) {
-        return restOperations.getForObject(registrationServerEndpoint + "/projects/" + projectId, ProjectInfo.class);
+        ProjectInfo info = restOperations.getForObject(registrationServerEndpoint + "/projects/" + projectId, ProjectInfo.class);
+        cache.put(projectId, info);
+        return info;
     }
 
     public ProjectInfo getProjectFromCache(long projectId) {
+        LoggerFactory.getLogger(this.getClass()).info("Recovery from cache");
         return cache.get(projectId);
     }
 }
